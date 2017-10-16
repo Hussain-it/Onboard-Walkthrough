@@ -12,6 +12,15 @@ class ViewController: UICollectionViewController,UICollectionViewDelegateFlowLay
 
 //-------------------------- Properties ----------------------//
 
+    let pages:[Page] = {
+        let firstPage = Page(title: "Share a great listen", message: "It's free to share a book in your life. Every recipient's first book is on us", imageName: "page1")
+        
+        let secondPage = Page(title: "Send from your library", message: "Tap the More menu next to any book. Choose \"send this book\"", imageName: "page2")
+        
+        let thirdPage = Page(title: "Send from the player", message: "Tap the More menu in upper corner. Choose \"send this book\"", imageName: "page3")
+        
+       return [firstPage,secondPage,thirdPage]
+    }()
     
 //-------------------------- METHODS ----------------------//
     
@@ -30,13 +39,14 @@ class ViewController: UICollectionViewController,UICollectionViewDelegateFlowLay
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 3
+        return pages.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PageCell.id, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PageCell.id, for: indexPath) as! PageCell
 
-        
+        let page = pages[indexPath.item]
+        cell.page = page
         return cell
     }
 

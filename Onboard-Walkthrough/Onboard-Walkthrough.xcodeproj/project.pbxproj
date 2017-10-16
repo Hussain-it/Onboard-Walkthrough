@@ -14,6 +14,7 @@
 		156B90E31F93946F00EC3644 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 156B90E11F93946F00EC3644 /* LaunchScreen.storyboard */; };
 		156B90EB1F939C1500EC3644 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156B90EA1F939C1500EC3644 /* View.swift */; };
 		15C0101B1F93BC520013A9E2 /* PageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C0101A1F93BC520013A9E2 /* PageCell.swift */; };
+		15FAEF6C1F9448E4008A8C07 /* PageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FAEF6B1F9448E4008A8C07 /* PageModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		156B90E41F93946F00EC3644 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		156B90EA1F939C1500EC3644 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		15C0101A1F93BC520013A9E2 /* PageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCell.swift; sourceTree = "<group>"; };
+		15FAEF6B1F9448E4008A8C07 /* PageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				156B90D81F93946F00EC3644 /* AppDelegate.swift */,
+				15FAEF6B1F9448E4008A8C07 /* PageModel.swift */,
 				156B90DA1F93946F00EC3644 /* ViewController.swift */,
 				15C0101A1F93BC520013A9E2 /* PageCell.swift */,
 				156B90DC1F93946F00EC3644 /* Main.storyboard */,
@@ -143,6 +146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				156B90DB1F93946F00EC3644 /* ViewController.swift in Sources */,
+				15FAEF6C1F9448E4008A8C07 /* PageModel.swift in Sources */,
 				156B90D91F93946F00EC3644 /* AppDelegate.swift in Sources */,
 				15C0101B1F93BC520013A9E2 /* PageCell.swift in Sources */,
 				156B90EB1F939C1500EC3644 /* View.swift in Sources */,
