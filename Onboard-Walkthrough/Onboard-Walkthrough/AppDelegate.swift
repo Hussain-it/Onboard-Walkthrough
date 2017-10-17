@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 1
+        layout.minimumLineSpacing = 0
         let cv = ViewController(collectionViewLayout: layout)
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = cv
