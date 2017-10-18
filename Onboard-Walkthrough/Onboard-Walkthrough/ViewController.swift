@@ -11,7 +11,6 @@ import UIKit
 class ViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
 
 //-------------------------- Properties ----------------------//
-    let loginCellId = "LoginCellId"
     
     let pages:[Page] = {
         let firstPage = Page(title: "Share a great listen", message: "It's free to share a book in your life. Every recipient's first book is on us", imageName: "page1")
@@ -51,6 +50,7 @@ class ViewController: UICollectionViewController,UICollectionViewDelegateFlowLay
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        observeKeyboardNotification()
         registerCells()
         collectionView?.backgroundColor = UIColor.white
         collectionView?.isPagingEnabled = true
@@ -69,7 +69,7 @@ class ViewController: UICollectionViewController,UICollectionViewDelegateFlowLay
     
     fileprivate func registerCells(){
         collectionView?.register(PageCell.self, forCellWithReuseIdentifier: PageCell.id)
-        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: loginCellId)
+        collectionView?.register(LoginCell.self, forCellWithReuseIdentifier: LoginCell.id)
     }
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -84,7 +84,7 @@ class ViewController: UICollectionViewController,UICollectionViewDelegateFlowLay
     
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         pageControl.currentPage = indexPath.row
-        
+        view.endEditing(true)
         if(indexPath.row == pages.count){
             pageControlBottomAnchor?.constant = 40
             skipButtonTopAnchor?.constant = -40
@@ -103,9 +103,10 @@ class ViewController: UICollectionViewController,UICollectionViewDelegateFlowLay
         
         //Last Cell as Login Page
         if(indexPath.item == pages.count){
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: loginCellId, for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LoginCell.id, for: indexPath) as! LoginCell
             return cell
         }
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PageCell.id, for: indexPath) as! PageCell
 
         let page = pages[indexPath.item]
@@ -115,6 +116,34 @@ class ViewController: UICollectionViewController,UICollectionViewDelegateFlowLay
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+    }
+    
+//    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        view.endEditing(true)
+//    }
+    
+    fileprivate func observeKeyboardNotification(){
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardHide), name: .UIKeyboardWillHide, object: nil)
+    }
+    
+    @objc func keyboardShow(){
+        
+        UIView.animate(withDuration: 0, delay: 0.5, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            
+            self.view.frame = CGRect(x: 0, y: -50, width: self.view.frame.width, height: self.view.frame.height)
+        }, completion: nil)
+    }
+    
+    @objc func keyboardHide(){
+        
+        UIView.animate(withDuration: 0, delay: 0.5, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            
+            self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+            
+        }, completion: nil)
     }
 }
 
