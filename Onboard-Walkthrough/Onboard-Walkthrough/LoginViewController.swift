@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
+class LoginViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
 
 //-------------------------- Properties ----------------------//
     
@@ -112,10 +112,20 @@ class ViewController: UICollectionViewController,UICollectionViewDelegateFlowLay
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
     }
     
-//    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        view.endEditing(true)
-//    }
     
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        if UIDevice.current.orientation.isLandscape{
+            collectionView?.collectionViewLayout.invalidateLayout()
+            
+            let indexPath = IndexPath(item: pageControl.currentPage, section: 0)
+            DispatchQueue.main.async {
+                self.collectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+                self.collectionView?.reloadData()
+            }
+        }
+
+        
+    }
     fileprivate func observeKeyboardNotification(){
         
         
@@ -126,8 +136,8 @@ class ViewController: UICollectionViewController,UICollectionViewDelegateFlowLay
     @objc func keyboardShow(){
         
         UIView.animate(withDuration: 0, delay: 0.5, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            
-            self.view.frame = CGRect(x: 0, y: -50, width: self.view.frame.width, height: self.view.frame.height)
+            let yVal:CGFloat = UIDevice.current.orientation.isLandscape ? -100 : -50
+            self.view.frame = CGRect(x: 0, y: yVal, width: self.view.frame.width, height: self.view.frame.height)
         }, completion: nil)
     }
     
