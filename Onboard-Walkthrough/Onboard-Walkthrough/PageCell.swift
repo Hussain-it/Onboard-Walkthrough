@@ -11,6 +11,7 @@ import UIKit
 class PageCell: UICollectionViewCell {
     //--- Properties ---//
     static let id = "PageCellId"
+    
     var page:Page?  {
         
         didSet{
